@@ -1,0 +1,918 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design Language Guide - AI & Tech Content</title>
+  <style>
+    :root {
+      --color-background-min: #020202;
+      --color-background-max: #0A0A0A;
+      --color-accent: #EF6F2E;
+      --color-structural: #6A7282;
+      --color-text: #F5F5F5;
+      --color-text-muted: #A1A1AA;
+      --color-panel: #111111;
+      --color-panel-soft: #171717;
+      --color-line: rgba(106, 114, 130, 0.42);
+      --color-line-subtle: rgba(245, 245, 245, 0.08);
+
+      --font-primary: "Google Sans", "Google Sans Text", "Inter", "Aptos", "Segoe UI", Arial, sans-serif;
+      --font-mono: "SFMono-Regular", "Roboto Mono", "Cascadia Code", Consolas, monospace;
+
+      --type-display-size: 56px;
+      --type-display-weight: 700;
+      --type-display-line: 0.95;
+      --type-display-tracking: -0.03em;
+      --type-h1-size: 36px;
+      --type-h1-weight: 700;
+      --type-h1-line: 1.05;
+      --type-h2-size: 24px;
+      --type-h2-weight: 650;
+      --type-h2-line: 1.18;
+      --type-body-size: 16px;
+      --type-body-weight: 400;
+      --type-body-line: 1.65;
+      --type-caption-size: 12px;
+      --type-caption-weight: 500;
+      --type-caption-line: 1.35;
+      --type-caption-tracking: 0.04em;
+
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 72px;
+      --space-9: 96px;
+
+      --radius: 14px;
+
+      --container: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--color-background-min);
+      color: var(--color-text);
+      font-family: var(--font-primary);
+      font-size: var(--type-body-size);
+      line-height: var(--type-body-line);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(106, 114, 130, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(106, 114, 130, 0.08) 1px, transparent 1px),
+        linear-gradient(135deg, var(--color-background-min), var(--color-background-max));
+      background-size: 48px 48px, 48px 48px, 100% 100%;
+    }
+
+    a {
+      color: var(--color-accent);
+    }
+
+    .page {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: var(--space-8) var(--space-5) var(--space-9);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
+      gap: var(--space-7);
+      align-items: end;
+      min-height: 420px;
+      border-bottom: 1px solid var(--color-line);
+      padding-bottom: var(--space-7);
+    }
+
+    .kicker,
+    .eyebrow,
+    .label {
+      color: var(--color-text-muted);
+      font-family: var(--font-mono);
+      font-size: var(--type-caption-size);
+      font-weight: var(--type-caption-weight);
+      letter-spacing: var(--type-caption-tracking);
+      line-height: var(--type-caption-line);
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin-top: var(--space-4);
+      color: var(--color-text);
+      font-size: var(--type-display-size);
+      font-weight: var(--type-display-weight);
+      letter-spacing: var(--type-display-tracking);
+      line-height: var(--type-display-line);
+    }
+
+    .lede {
+      max-width: 640px;
+      margin-top: var(--space-5);
+      color: var(--color-text-muted);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .mirror-note {
+      border-left: 2px solid var(--color-accent);
+      color: var(--color-text-muted);
+      padding: var(--space-4) 0 var(--space-4) var(--space-4);
+    }
+
+    section {
+      padding: var(--space-8) 0;
+      border-bottom: 1px solid var(--color-line-subtle);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: var(--space-6);
+      margin-bottom: var(--space-6);
+    }
+
+    h2 {
+      color: var(--color-text);
+      font-size: var(--type-h1-size);
+      font-weight: var(--type-h1-weight);
+      letter-spacing: -0.02em;
+      line-height: var(--type-h1-line);
+    }
+
+    h3 {
+      color: var(--color-text);
+      font-size: var(--type-h2-size);
+      font-weight: var(--type-h2-weight);
+      line-height: var(--type-h2-line);
+    }
+
+    .section-copy {
+      max-width: 720px;
+      color: var(--color-text-muted);
+    }
+
+    .grid {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .panel,
+    .swatch,
+    .specimen,
+    .asset-card,
+    .rule-card {
+      background: rgba(17, 17, 17, 0.84);
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius);
+    }
+
+    .swatch {
+      overflow: hidden;
+    }
+
+    .swatch-chip {
+      min-height: 128px;
+      border-bottom: 1px solid var(--color-line);
+      display: flex;
+      align-items: flex-end;
+      padding: var(--space-4);
+      color: var(--sample-on, var(--color-text));
+      background: var(--sample-bg);
+    }
+
+    .swatch-body,
+    .specimen,
+    .asset-card,
+    .rule-card,
+    .panel {
+      padding: var(--space-5);
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-4);
+      color: var(--color-text-muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .token-name {
+      color: var(--color-text);
+      font-family: var(--font-mono);
+      font-size: 13px;
+    }
+
+    .palette-rule {
+      display: grid;
+      grid-template-columns: minmax(0, 9fr) minmax(24px, 1fr);
+      min-height: 72px;
+      margin-top: var(--space-5);
+      overflow: hidden;
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius);
+    }
+
+    .palette-rule div:first-child {
+      background: var(--color-panel);
+    }
+
+    .palette-rule div:last-child {
+      background: var(--color-accent);
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(220px, 0.6fr);
+      gap: var(--space-5);
+      align-items: center;
+      border-top: 1px solid var(--color-line-subtle);
+      padding-top: var(--space-5);
+      margin-top: var(--space-5);
+    }
+
+    .type-display {
+      font-size: var(--type-display-size);
+      font-weight: var(--type-display-weight);
+      line-height: var(--type-display-line);
+      letter-spacing: var(--type-display-tracking);
+    }
+
+    .type-h1 {
+      font-size: var(--type-h1-size);
+      font-weight: var(--type-h1-weight);
+      line-height: var(--type-h1-line);
+      letter-spacing: -0.02em;
+    }
+
+    .type-h2 {
+      font-size: var(--type-h2-size);
+      font-weight: var(--type-h2-weight);
+      line-height: var(--type-h2-line);
+    }
+
+    .type-body {
+      font-size: var(--type-body-size);
+      font-weight: var(--type-body-weight);
+      line-height: var(--type-body-line);
+      color: var(--color-text-muted);
+    }
+
+    .type-caption {
+      font-family: var(--font-mono);
+      font-size: var(--type-caption-size);
+      font-weight: var(--type-caption-weight);
+      line-height: var(--type-caption-line);
+      letter-spacing: var(--type-caption-tracking);
+      text-transform: uppercase;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr) 80px;
+      gap: var(--space-4);
+      align-items: center;
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--color-line-subtle);
+    }
+
+    .bar {
+      height: 14px;
+      width: var(--bar-width);
+      min-width: 4px;
+      background: var(--color-accent);
+    }
+
+    .radius-sample {
+      width: 100%;
+      min-height: 112px;
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(90deg, transparent 31px, rgba(106, 114, 130, 0.2) 32px),
+        linear-gradient(transparent 31px, rgba(106, 114, 130, 0.2) 32px),
+        var(--color-panel-soft);
+      background-size: 32px 32px;
+    }
+
+    .depth-card {
+      min-height: 160px;
+      display: grid;
+      align-content: space-between;
+    }
+
+    .depth-flat {
+      border: 1px solid var(--color-line);
+      box-shadow: none;
+    }
+
+    .depth-line {
+      border: 1px solid var(--color-structural);
+      box-shadow: inset 0 1px 0 rgba(245, 245, 245, 0.08);
+    }
+
+    .depth-avoid {
+      border: 1px solid rgba(239, 111, 46, 0.42);
+      box-shadow: 0 20px 64px rgba(239, 111, 46, 0.18);
+    }
+
+    .component-stage {
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      align-items: center;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius);
+      background: transparent;
+      color: var(--color-text);
+      cursor: pointer;
+      font-family: var(--font-primary);
+      font-size: 14px;
+      font-weight: 650;
+      height: 44px;
+      letter-spacing: 0;
+      padding: 0 var(--space-5);
+    }
+
+    .btn-primary {
+      border-color: var(--color-accent);
+      color: var(--color-background-min);
+      background: var(--color-accent);
+    }
+
+    .btn-secondary {
+      color: var(--color-text);
+      background: transparent;
+    }
+
+    .btn-hover {
+      outline: 1px solid var(--color-accent);
+      outline-offset: 3px;
+    }
+
+    .btn-disabled {
+      opacity: 0.38;
+      cursor: not-allowed;
+    }
+
+    .content-card {
+      display: grid;
+      gap: var(--space-4);
+      min-height: 220px;
+      padding: var(--space-5);
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius);
+      background: var(--color-panel);
+    }
+
+    .content-card::before {
+      content: "";
+      display: block;
+      width: 72px;
+      height: 2px;
+      background: var(--color-accent);
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      overflow: hidden;
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius);
+    }
+
+    .metric {
+      min-height: 92px;
+      padding: var(--space-4);
+      border-right: 1px solid var(--color-line);
+      display: grid;
+      align-content: space-between;
+    }
+
+    .metric:last-child {
+      border-right: 0;
+    }
+
+    .metric strong {
+      font-size: 26px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .asset-preview {
+      position: relative;
+      min-height: 148px;
+      margin-top: var(--space-4);
+      overflow: hidden;
+      border: 1px solid var(--color-line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(rgba(106, 114, 130, 0.16) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(106, 114, 130, 0.16) 1px, transparent 1px),
+        var(--color-background-min);
+      background-size: 24px 24px;
+    }
+
+    .asset-preview::before {
+      content: "";
+      position: absolute;
+      top: 28px;
+      right: 32px;
+      width: 34%;
+      height: 2px;
+      background: var(--color-accent);
+    }
+
+    .asset-preview::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 34%;
+      height: 45%;
+      border-top: 1px dashed rgba(245, 245, 245, 0.26);
+      border-right: 1px dashed rgba(245, 245, 245, 0.26);
+      background: rgba(2, 2, 2, 0.6);
+    }
+
+    .asset-square {
+      aspect-ratio: 1 / 1;
+    }
+
+    .asset-portrait {
+      aspect-ratio: 9 / 16;
+      max-height: 320px;
+    }
+
+    .asset-wide {
+      aspect-ratio: 16 / 9;
+    }
+
+    .prompt {
+      white-space: pre-wrap;
+      color: var(--color-text-muted);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .rules {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-5);
+    }
+
+    .rule-list {
+      display: grid;
+      gap: var(--space-3);
+      margin: var(--space-4) 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .rule-list li {
+      display: grid;
+      grid-template-columns: 26px minmax(0, 1fr);
+      gap: var(--space-3);
+      color: var(--color-text-muted);
+    }
+
+    .rule-marker {
+      color: var(--color-accent);
+      font-family: var(--font-mono);
+    }
+
+    .checklist {
+      display: grid;
+      gap: var(--space-3);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr);
+      gap: var(--space-3);
+      color: var(--color-text-muted);
+    }
+
+    .check-box {
+      width: 14px;
+      height: 14px;
+      margin-top: 6px;
+      border: 1px solid var(--color-accent);
+    }
+
+    @media (max-width: 860px) {
+      .page {
+        padding: var(--space-6) var(--space-4) var(--space-8);
+      }
+
+      .hero,
+      .section-head,
+      .type-row,
+      .grid.two,
+      .grid.three,
+      .rules {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .metric-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .metric:nth-child(2) {
+        border-right: 0;
+      }
+
+      .metric:nth-child(1),
+      .metric:nth-child(2) {
+        border-bottom: 1px solid var(--color-line);
+      }
+    }
+
+    @media (max-width: 520px) {
+      h1 {
+        font-size: 34px;
+      }
+
+      .type-display {
+        font-size: 38px;
+      }
+
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metric {
+        border-right: 0;
+        border-bottom: 1px solid var(--color-line);
+      }
+
+      .metric:last-child {
+        border-bottom: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <p class="kicker">Design language guide</p>
+        <h1>Personal Brand: AI &amp; Tech Content</h1>
+        <p class="lede">A minimal, engineered, premium visual system for X-first AI and tech content. The system borrows from precise SaaS dashboards: near-black surfaces, 14px corners, generous negative space, and one restrained orange accent.</p>
+      </div>
+      <aside class="mirror-note">
+        This HTML file is the human-readable mirror of the provided <strong>design.md</strong>. It renders the same palette, typography, composition rules, asset specs, prompt template, and publishing checklist in one browser-ready reference.
+      </aside>
+    </header>
+
+    <section id="inspiration">
+      <div class="section-head">
+        <p class="eyebrow">01 / Inspiration</p>
+        <div>
+          <h2>Factory-style technical restraint</h2>
+          <p class="section-copy">The design language is minimal SaaS/dashboard rather than expressive illustration. It should feel precise, structured, and credible, with every visual element aligned to a grid and every accent used deliberately.</p>
+        </div>
+      </div>
+      <div class="metric-grid">
+        <div class="metric"><span class="label">Mood</span><strong>Engineered</strong></div>
+        <div class="metric"><span class="label">Density</span><strong>Quiet</strong></div>
+        <div class="metric"><span class="label">Shape</span><strong>14px</strong></div>
+        <div class="metric"><span class="label">Accent</span><strong>10%</strong></div>
+      </div>
+    </section>
+
+    <section id="principles">
+      <div class="section-head">
+        <p class="eyebrow">02 / Principles</p>
+        <div>
+          <h2>Minimal over decorative</h2>
+          <p class="section-copy">The system is designed to prevent generic AI visuals. It should stay geometric, restrained, and legible, with no decorative filler and no literal AI cliches. Use this as a taste boundary, not a source to clone: every asset, composition, and layout should be original to this brand.</p>
+        </div>
+      </div>
+      <div class="rules">
+        <div class="rule-card">
+          <h3>Do</h3>
+          <ul class="rule-list">
+            <li><span class="rule-marker">01</span><span>Use grid-based structure and clear alignment.</span></li>
+            <li><span class="rule-marker">02</span><span>Use a 14px corner radius on UI-like shapes.</span></li>
+            <li><span class="rule-marker">03</span><span>Let negative space carry the premium feel.</span></li>
+            <li><span class="rule-marker">04</span><span>Use orange only as a sparse highlight.</span></li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <h3>Don't</h3>
+          <ul class="rule-list">
+            <li><span class="rule-marker">01</span><span>Do not add robots, glowing brains, generic circuits, or AI stock-art tropes.</span></li>
+            <li><span class="rule-marker">02</span><span>Do not bake text or logos into generated images.</span></li>
+            <li><span class="rule-marker">03</span><span>Do not use the orange accent as the dominant fill.</span></li>
+            <li><span class="rule-marker">04</span><span>Do not recreate another brand's exact assets, page layouts, animations, or recognizable compositions.</span></li>
+            <li><span class="rule-marker">05</span><span>Do not use a corner radius other than 14px.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="colors">
+      <div class="section-head">
+        <p class="eyebrow">03 / Colors</p>
+        <div>
+          <h2>Neutral field, single orange signal</h2>
+          <p class="section-copy">The palette is approximately 90% neutral and 10% or less orange. Near-black owns the background, off-white owns primary text, grey supports structure, and orange identifies the one thing that matters most.</p>
+        </div>
+      </div>
+      <div class="grid three">
+        <article class="swatch">
+          <div class="swatch-chip" style="--sample-bg: var(--color-background-min); --sample-on: var(--color-text);">Primary background</div>
+          <div class="swatch-body">
+            <div class="meta"><span class="token-name">--color-background-min</span><span>#020202</span></div>
+            <p class="section-copy">Base for all dark visuals.</p>
+          </div>
+        </article>
+        <article class="swatch">
+          <div class="swatch-chip" style="--sample-bg: var(--color-background-max); --sample-on: var(--color-text);">Charcoal range</div>
+          <div class="swatch-body">
+            <div class="meta"><span class="token-name">--color-background-max</span><span>#0A0A0A</span></div>
+            <p class="section-copy">Subtle range for dark surfaces.</p>
+          </div>
+        </article>
+        <article class="swatch">
+          <div class="swatch-chip" style="--sample-bg: var(--color-accent); --sample-on: var(--color-background-min);">Accent</div>
+          <div class="swatch-body">
+            <div class="meta"><span class="token-name">--color-accent</span><span>#EF6F2E</span></div>
+            <p class="section-copy">Sparse highlight for a line, shape, or key data point.</p>
+          </div>
+        </article>
+        <article class="swatch">
+          <div class="swatch-chip" style="--sample-bg: var(--color-structural); --sample-on: var(--color-text);">Structural grey</div>
+          <div class="swatch-body">
+            <div class="meta"><span class="token-name">--color-structural</span><span>#6A7282</span></div>
+            <p class="section-copy">Grid lines, dividers, and secondary structure.</p>
+          </div>
+        </article>
+        <article class="swatch">
+          <div class="swatch-chip" style="--sample-bg: var(--color-text); --sample-on: var(--color-background-min);">Primary text</div>
+          <div class="swatch-body">
+            <div class="meta"><span class="token-name">--color-text</span><span>#F5F5F5</span></div>
+            <p class="section-copy">High-contrast text on dark backgrounds.</p>
+          </div>
+        </article>
+        <article class="swatch">
+          <div class="swatch-chip" style="--sample-bg: var(--color-text-muted); --sample-on: var(--color-background-min);">Muted text</div>
+          <div class="swatch-body">
+            <div class="meta"><span class="token-name">--color-text-muted</span><span>#A1A1AA</span></div>
+            <p class="section-copy">Captions, secondary labels, and supporting copy.</p>
+          </div>
+        </article>
+      </div>
+      <div class="palette-rule" aria-label="90 percent neutral and 10 percent accent ratio">
+        <div></div>
+        <div></div>
+      </div>
+    </section>
+
+    <section id="typography">
+      <div class="section-head">
+        <p class="eyebrow">04 / Typography</p>
+        <div>
+          <h2>Geometric, structured, legible</h2>
+          <p class="section-copy">The primary type direction is Google Sans in spirit: clean geometry, confident weights, tight headlines, and readable captions. Avoid script, serif, decorative, or mixed typeface systems.</p>
+        </div>
+      </div>
+      <article class="specimen">
+        <div class="type-row">
+          <div class="type-display">Systems over spectacle</div>
+          <div class="meta"><span class="token-name">display</span><span>56 / 700 / 0.95</span></div>
+        </div>
+        <div class="type-row">
+          <div class="type-h1">Sharp product thinking for AI builders</div>
+          <div class="meta"><span class="token-name">h1</span><span>36 / 700 / 1.05</span></div>
+        </div>
+        <div class="type-row">
+          <div class="type-h2">Quiet dashboard precision</div>
+          <div class="meta"><span class="token-name">h2</span><span>24 / 650 / 1.18</span></div>
+        </div>
+        <div class="type-row">
+          <div class="type-body">Use regular-weight body copy for legibility at small sizes. Let the grid, contrast, and whitespace create authority instead of adding ornament.</div>
+          <div class="meta"><span class="token-name">body</span><span>16 / 400 / 1.65</span></div>
+        </div>
+        <div class="type-row">
+          <div class="type-caption">Secondary label / dashboard caption</div>
+          <div class="meta"><span class="token-name">caption</span><span>12 / 500 / 1.35</span></div>
+        </div>
+      </article>
+    </section>
+
+    <section id="layout">
+      <div class="section-head">
+        <p class="eyebrow">05 / Layout</p>
+        <div>
+          <h2>Grid first, negative space always</h2>
+          <p class="section-copy">Composition should feel intentionally aligned, never free-floating. For X header images, keep the bottom-left third empty and dark for the profile photo overlap zone.</p>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="bar-row"><span class="token-name">space-1</span><div class="bar" style="--bar-width: var(--space-1);"></div><span class="meta">4px</span></div>
+        <div class="bar-row"><span class="token-name">space-2</span><div class="bar" style="--bar-width: var(--space-2);"></div><span class="meta">8px</span></div>
+        <div class="bar-row"><span class="token-name">space-3</span><div class="bar" style="--bar-width: var(--space-3);"></div><span class="meta">12px</span></div>
+        <div class="bar-row"><span class="token-name">space-4</span><div class="bar" style="--bar-width: var(--space-4);"></div><span class="meta">16px</span></div>
+        <div class="bar-row"><span class="token-name">space-5</span><div class="bar" style="--bar-width: var(--space-5);"></div><span class="meta">24px</span></div>
+        <div class="bar-row"><span class="token-name">space-6</span><div class="bar" style="--bar-width: var(--space-6);"></div><span class="meta">32px</span></div>
+        <div class="bar-row"><span class="token-name">space-7</span><div class="bar" style="--bar-width: var(--space-7);"></div><span class="meta">48px</span></div>
+        <div class="bar-row"><span class="token-name">space-8</span><div class="bar" style="--bar-width: var(--space-8);"></div><span class="meta">72px</span></div>
+        <div class="bar-row"><span class="token-name">space-9</span><div class="bar" style="--bar-width: var(--space-9);"></div><span class="meta">96px</span></div>
+      </div>
+      <div class="panel" style="margin-top: var(--space-5);">
+        <h3>Scale lock</h3>
+        <p class="section-copy" style="margin-top: var(--space-3);">Future brand files should preserve these proportions so related artifacts do not feel zoomed, widened, or visually heavier than this guide. Only change these values when a project-specific brief explicitly calls for a different scale.</p>
+        <div class="grid three" style="margin-top: var(--space-5);">
+          <div class="meta"><span class="token-name">container</span><span>1120px</span></div>
+          <div class="meta"><span class="token-name">hero height</span><span>420px</span></div>
+          <div class="meta"><span class="token-name">hero columns</span><span>1.3fr / 0.7fr</span></div>
+          <div class="meta"><span class="token-name">section label</span><span>220px</span></div>
+          <div class="meta"><span class="token-name">display type</span><span>56px / 700 / -0.03em</span></div>
+          <div class="meta"><span class="token-name">metric type</span><span>26px</span></div>
+          <div class="meta"><span class="token-name">corner radius</span><span>14px</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="shapes-depth">
+      <div class="section-head">
+        <p class="eyebrow">06 / Shapes and depth</p>
+        <div>
+          <h2>Flat, 14px corners</h2>
+          <p class="section-copy">Use flat 2D surfaces, borders, thin lines, and subtle grid overlays. Every UI shape uses a 14px corner radius. Avoid heavy shadows, glossy gradients, and 3D renders.</p>
+        </div>
+      </div>
+      <article class="panel">
+        <div class="radius-sample"></div>
+        <div class="meta" style="margin-top: var(--space-4);"><span class="token-name">--radius</span><span>14px</span></div>
+      </article>
+      <div class="grid three" style="margin-top: var(--space-5);">
+        <article class="panel depth-card depth-flat">
+          <h3>Preferred: flat</h3>
+          <p class="section-copy">Border-only structure keeps the system precise.</p>
+        </article>
+        <article class="panel depth-card depth-line">
+          <h3>Allowed: line depth</h3>
+          <p class="section-copy">A subtle inset line is enough to create hierarchy.</p>
+        </article>
+        <article class="panel depth-card depth-avoid">
+          <h3>Avoid: glow</h3>
+          <p class="section-copy">Large orange shadows quickly become generic and overproduced.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="components">
+      <div class="section-head">
+        <p class="eyebrow">07 / Components</p>
+        <div>
+          <h2>Reusable content primitives</h2>
+          <p class="section-copy">The source guide is asset-focused rather than app-component-focused, so these examples translate its rules into practical primitives: buttons, content cards, metric strips, and social-format frames.</p>
+        </div>
+      </div>
+      <div class="component-stage">
+        <article class="panel">
+          <h3>Buttons and actions</h3>
+          <div class="button-row" style="margin-top: var(--space-4);">
+            <button class="btn btn-primary">Primary action</button>
+            <button class="btn btn-primary btn-hover">Primary hover</button>
+            <button class="btn btn-secondary">Secondary action</button>
+            <button class="btn btn-secondary btn-disabled" disabled>Disabled</button>
+          </div>
+        </article>
+        <div class="grid two">
+          <article class="content-card">
+            <span class="label">Content card</span>
+            <h3>One idea, one accent</h3>
+            <p class="section-copy">Use a single orange rule, marker, or data point. Keep supporting text muted and aligned.</p>
+          </article>
+          <article class="content-card">
+            <span class="label">Data strip</span>
+            <div class="metric-grid">
+              <div class="metric"><span class="label">Reach</span><strong>42K</strong></div>
+              <div class="metric"><span class="label">Save</span><strong>18%</strong></div>
+              <div class="metric"><span class="label">CTR</span><strong>6.4</strong></div>
+              <div class="metric"><span class="label">Rank</span><strong>01</strong></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="prompt">
+      <div class="section-head">
+        <p class="eyebrow">08 / Prompt template</p>
+        <div>
+          <h2>Base prompt for generated visuals</h2>
+          <p class="section-copy">Use this prompt as the system's repeatable generation anchor. Text and logos should be added separately after generation, never baked into the image.</p>
+        </div>
+      </div>
+      <div class="panel">
+        <p class="prompt">Minimal SaaS dashboard aesthetic, deep charcoal-to-near-black background (#020202-#0A0A0A), sharp geometric grid layout, 14px corner radius, generous negative space. Single vivid orange accent (#EF6F2E) used sparingly - one line, shape, or highlight only. Muted cool grey (#6A7282) for secondary structural elements. Any letterforms should evoke Google Sans: geometric, structured, confident. No robots, no glowing brains, no cliche AI imagery, no literal circuits, no text, no logos. Feel: engineered, confident, premium - like a serious technical product interface, not AI-generated stock art.</p>
+      </div>
+    </section>
+
+    <section id="asset-specs">
+      <div class="section-head">
+        <p class="eyebrow">09 / Asset specs</p>
+        <div>
+          <h2>X-first formats with room to breathe</h2>
+          <p class="section-copy">The same visual language scales across social formats. The X header is the first priority and must protect the bottom-left overlap area.</p>
+        </div>
+      </div>
+      <div class="grid two">
+        <article class="asset-card">
+          <div class="meta"><span class="token-name">X header</span><span>1500 x 500</span></div>
+          <div class="asset-preview"></div>
+          <p class="section-copy" style="margin-top: var(--space-4);">3:1 composition; bottom-left third stays empty and dark.</p>
+        </article>
+        <article class="asset-card">
+          <div class="meta"><span class="token-name">YouTube thumbnail</span><span>1280 x 720</span></div>
+          <div class="asset-preview asset-wide"></div>
+          <p class="section-copy" style="margin-top: var(--space-4);">Keep orange consistent for brand recall.</p>
+        </article>
+        <article class="asset-card">
+          <div class="meta"><span class="token-name">Instagram post</span><span>1080 x 1080</span></div>
+          <div class="asset-preview asset-square"></div>
+          <p class="section-copy" style="margin-top: var(--space-4);">Square format for phase 2 content.</p>
+        </article>
+        <article class="asset-card">
+          <div class="meta"><span class="token-name">Instagram Reel cover</span><span>1080 x 1920</span></div>
+          <div class="asset-preview asset-portrait"></div>
+          <p class="section-copy" style="margin-top: var(--space-4);">Portrait system should remain grid-based, not poster-like.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="checklist">
+      <div class="section-head">
+        <p class="eyebrow">10 / Publishing checklist</p>
+        <div>
+          <h2>Consistency before publishing</h2>
+          <p class="section-copy">Run this list against every visual. It protects the brand from drifting into busy, decorative, or generic AI imagery.</p>
+        </div>
+      </div>
+      <div class="panel">
+        <ul class="checklist">
+          <li><span class="check-box"></span><span>Background is near-black or charcoal, not another color.</span></li>
+          <li><span class="check-box"></span><span>Only one orange accent element is used, and it is sparse.</span></li>
+          <li><span class="check-box"></span><span>Corner radius is 14px on structural and UI-like shapes.</span></li>
+          <li><span class="check-box"></span><span>No literal AI cliches appear: robots, brains, or generic circuits.</span></li>
+          <li><span class="check-box"></span><span>Assets and layouts are original to this brand, not copied from any reference site.</span></li>
+          <li><span class="check-box"></span><span>Layout scale matches the scale lock: 1120px container, 420px hero, 56px display type, 220px section label rail, and 14px corner radius.</span></li>
+          <li><span class="check-box"></span><span>Typography matches the Google Sans style if any text or letterforms appear.</span></li>
+          <li><span class="check-box"></span><span>Composition feels minimal and grid-based, not busy or decorative.</span></li>
+          <li><span class="check-box"></span><span>The final tone reads engineered, credible, and premium.</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

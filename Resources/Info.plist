@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleIdentifier</key>
+    <string>com.mycluely.MyCluely</string>
+    <key>CFBundleName</key>
+    <string>MyCluely</string>
+    <key>CFBundleDisplayName</key>
+    <string>MyCluely</string>
+    <key>CFBundleExecutable</key>
+    <string>MyCluely</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.2.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>14.0</string>
+    <key>LSUIElement</key>
+    <true/>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>MyCluely transcribes speech on-device in Local STT mode. Detected questions are sent to Gemini for answers.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>MyCluely captures microphone audio when selected. Cloud Live mode sends this audio to your selected Gemini or OpenAI provider.</string>
+</dict>
+</plist>

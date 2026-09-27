@@ -1,0 +1,74 @@
+# Swift builds, compiler output, and caches
+.build/
+build/
+.spm-test/
+.tmp/
+.swiftpm/
+DerivedData/
+ModuleCache/
+ModuleCache.noindex/
+/1MTWNDVONU6Q/
+*.swiftmodule
+*.swiftdoc
+*.swiftsourceinfo
+*.pcm
+*.o
+*.dSYM/
+/main
+modules.timestamp
+*.app/
+
+# System metadata
+.DS_Store
+._*
+Thumbs.db
+.Spotlight-V100/
+.Trashes/
+
+# Web dependencies and generated assets
+node_modules/
+landing-page/node_modules/
+landing-page/.next/
+landing-page/out/
+.next/
+out/
+coverage/
+.vercel/
+*.tsbuildinfo
+
+# Local credentials and configuration
+.env
+.env.local
+.env.production
+.env*
+landing-page/.env*
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+client_secret*.json
+service-account*.json
+
+# Preferences, local recordings, databases, logs, and diagnostic exports
+*.plist
+!Resources/Info.plist
+!Resources/*.entitlements
+*.log
+*.sqlite
+*.sqlite3
+*.db
+*.db-shm
+*.db-wal
+*.sqlite-wal
+*.sqlite-shm
+*.wav
+*.m4a
+*.caf
+*.mp3
+recordings/
+transcripts/
+
+# Do not nest a private Git repository inside the public source tree
+landing-page/.git/
+**/.git/
